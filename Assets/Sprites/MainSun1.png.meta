@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -108,18 +108,64 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: MainSun1_9
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 629
+        width: 341
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d4a948aa1aab0e4b93d71c56b43d1d0
+      internalID: 990137078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -191, y: 18}
+      - {x: -191, y: 398}
+      - {x: 178, y: 398}
+      - {x: 178, y: 18}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MainSun1_0: -375356503
+      MainSun1_1: 416013639
+      MainSun1_10: 908186939
+      MainSun1_11: -1843845359
+      MainSun1_12: 2059509664
+      MainSun1_13: 672863488
+      MainSun1_14: 2000141441
+      MainSun1_15: -1661819291
+      MainSun1_16: -695666525
+      MainSun1_17: 506905345
+      MainSun1_18: -1061081559
+      MainSun1_19: -1123596576
+      MainSun1_2: 432337961
+      MainSun1_20: 1169141420
+      MainSun1_3: 1747230435
+      MainSun1_4: 1528289669
+      MainSun1_5: 1026432396
+      MainSun1_6: 1100262437
+      MainSun1_7: -885468684
+      MainSun1_8: 399350609
+      MainSun1_9: 990137078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
