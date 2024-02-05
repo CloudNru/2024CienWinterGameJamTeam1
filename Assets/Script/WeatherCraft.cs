@@ -50,7 +50,7 @@ public class WeatherCraft
         string s = "";
         foreach(BehaviorObject.Behavior behavior in behaviorList)
         {
-            s += BehaviorObject.BehaviorName[(int)behavior] + " ";
+            s += behavior.ToString() + " ";
         }
         Debug.Log(s);
 

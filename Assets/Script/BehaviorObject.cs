@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class BehaviorObject : MonoBehaviour
 {
     public enum Behavior { NULL, Eraser, Cloud, Water, Ice, Bulb, Wind, Socket, Smoke, Error  };
-    public static string[] BehaviorName = new string[]{ "NULL", "Eraser", "Cloud", "Water", "Ice", "Bulb", "Wind", "Socket", "Smoke", "Error"};
 
     [SerializeField]
     private BehaviorStack stack;
