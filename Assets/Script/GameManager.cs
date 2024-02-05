@@ -4,19 +4,64 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager Instance; //ΩÃ±€≈Ê
+    private static GameManager Instance;
 
+    [SerializeField]
+    private List<WeatherRecipe> weatherRecipes;
+
+    [SerializeField]
     private float time;
+    [SerializeField]
     private int life;
+    [SerializeField]
     private int score;
 
-    GameManager() {
+    private void Start()
+    {
+        Instance = this;
         time = 60;
         life = 3;
         score = 0;
+
+        foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
+        {
+            weatherRecipes.Add(recipe);
+        }
     }
 
-    public static GameManager getInstance()
+    public WeatherRecipe isGoodRecipe(BehaviorObject.Behavior first, BehaviorObject.Behavior second, BehaviorObject.Behavior third)
+    {
+        foreach(var recipe in weatherRecipes)
+        {
+            if(recipe.firstBehavior == first)
+            {
+                if(recipe.secondBehavior == second)
+                {
+                    if(recipe.thirdBehavior == third)
+                    {
+                        return recipe;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public WeatherRecipe FindRecipe(WeatherList.weather weather) 
+    {
+        foreach(WeatherRecipe recipe in weatherRecipes)
+        {
+            if(recipe.weather == weather)
+            {
+                return recipe;
+            }
+        }
+
+        return null;
+    }
+
+    public static GameManager getInstance() //ΩÃ±€≈Ê
     {
         if(Instance == null)
         {
@@ -41,9 +86,17 @@ public class GameManager : MonoBehaviour
     {
         if(time <= 0)
         {
-            GameOver();
+            //GameOver();
         }
         time -= Time.deltaTime;
+    }
+
+    void call()
+    {
+        foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
+        {
+            weatherRecipes.Add(recipe);
+        }
     }
 
     public void AddTime(int n)
