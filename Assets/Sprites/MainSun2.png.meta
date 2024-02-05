@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -108,18 +108,52 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: MainSun2_3
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 632
+        width: 355
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf654a1540c5b1d4ab622c1b40054c58
+      internalID: -1642796667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -205, y: 20}
+      - {x: -205, y: 418}
+      - {x: 168, y: 418}
+      - {x: 168, y: 20}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MainSun2_0: -663124211
+      MainSun2_1: 420362365
+      MainSun2_2: 1661383769
+      MainSun2_3: -1642796667
+      MainSun2_4: -1240153699
+      MainSun2_5: 962616936
+      MainSun2_6: 642417293
+      MainSun2_7: 1294178787
+      MainSun2_8: -616111095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
