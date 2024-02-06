@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - TitleImage
+  - Panel
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: TitleImage
+    uniqueID: 2803891017
+    locked: 0
+  - name: UI
+    uniqueID: 1323606555
+    locked: 0
+  - name: Panel
+    uniqueID: 1791877773
     locked: 0
