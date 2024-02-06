@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   weather: 2
-  icon: {fileID: 21300000, guid: c6b742799645c424493f493225c40a75, type: 3}
+  icon: {fileID: 21300000, guid: 4acf8efb64d0cc6469b9314bee6940c4, type: 3}

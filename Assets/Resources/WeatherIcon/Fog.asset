@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Fog
   m_EditorClassIdentifier: 
   weather: 6
-  icon: {fileID: 21300000, guid: feaa8e0c728289c4e910c0bfe3b496ed, type: 3}
+  icon: {fileID: 21300000, guid: 7415c9f07a2dc4f489632fe4f08441f6, type: 3}

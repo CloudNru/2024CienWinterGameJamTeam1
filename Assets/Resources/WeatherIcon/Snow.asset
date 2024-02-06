@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Snow
   m_EditorClassIdentifier: 
   weather: 4
-  icon: {fileID: 21300000, guid: 3d98b97844e2ee44d8e6236ed08a5af3, type: 3}
+  icon: {fileID: 21300000, guid: c382ebc1fb552804c9c8c38a646c4364, type: 3}
