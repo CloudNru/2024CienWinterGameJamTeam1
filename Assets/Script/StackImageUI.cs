@@ -20,7 +20,7 @@ public class StackImageUI : MonoBehaviour
     List<BehaviorInfo> spriteList = new List<BehaviorInfo>();
 
     [SerializeField]
-    SpriteRenderer[] BehaviorIcons = new SpriteRenderer[4];
+    Image[] BehaviorIcons = new Image[4];
 
     public void UpdateUI(BehaviorStack stack)
     {
