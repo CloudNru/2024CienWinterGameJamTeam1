@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateCard : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class CreateCard : MonoBehaviour
             if (card != null) // CardResource 컴포넌트가 할당되었는지 확인
             {
                 card.CurrentWeather = randomWeather;
-                cardImage.sprite =
+                //cardImage.sprite =
                 randomWeather = allWeathers[Random.Range(0, allWeathers.Length)];
                 card.needWeather = randomWeather;
 

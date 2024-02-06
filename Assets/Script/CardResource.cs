@@ -13,7 +13,7 @@ public class CardResource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
     }
 
@@ -28,15 +28,12 @@ public class CardResource : MonoBehaviour
         WeatherList.weather CraftedWeather = WeatherCraft.CraftingWeather(CurrentWeather, inputBehavior);
         if (CraftedWeather == needWeather)
         {
-            if(CardMaker != null)
-            {
-                CardMaker.changeCard(this);
-            }
+            GameManager.getInstance().AddScore(1);
+            CardMaker.changeCard(this);
             return true;
         }
-        else {
-            return false;
-        }
-            
+        GameManager.getInstance().SubtractScore(1);
+        GameManager.getInstance().LoseLife(1);
+        return false;
     }
 }
