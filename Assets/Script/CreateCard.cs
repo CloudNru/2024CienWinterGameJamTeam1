@@ -20,7 +20,12 @@ public class CreateCard : MonoBehaviour
     };
 
     [SerializeField]
-    List<GoalWeatherSprite> goalWeathers;
+    List<GoalWeatherSprite> goalWeathers = new List<GoalWeatherSprite>();
+
+    [SerializeField]
+    List<CurrenWeatherIcon> currentWeatherImages = new List<CurrenWeatherIcon>();
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,11 @@ public class CreateCard : MonoBehaviour
         foreach(GoalWeatherSprite sprite in Resources.LoadAll<GoalWeatherSprite>("GoalWeatherSprite"))
         {
             goalWeathers.Add(sprite);
+        }
+
+        foreach (CurrenWeatherIcon sprite in Resources.LoadAll<CurrenWeatherIcon>("WeatherIcon"))
+        {
+            currentWeatherImages.Add(sprite);
         }
     }
 
@@ -84,6 +94,17 @@ public class CreateCard : MonoBehaviour
         card.CardMaker = this;
 
         return card;//*/
+    }
+
+    public Sprite getCurrentIcon(WeatherList.weather weather)
+    {
+        return currentWeatherImages.Find(x => x.weather == weather).icon;
+    }
+
+    public Sprite getGoalImage(WeatherList.weather weather)
+    {
+        int i = Random.Range(0, 3);
+        return goalWeathers.Find(x => x.weather == weather).image[i];
     }
 
     public CardResource changeCard(CardResource c)
