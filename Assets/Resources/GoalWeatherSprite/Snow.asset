@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289747f4c9a8679448fb2ea0f0f52a3e, type: 3}
-  m_Name: Fog
+  m_Name: Snow
   m_EditorClassIdentifier: 
-  weather: 6
+  weather: 4
   image:
-  - {fileID: 21300000, guid: a87bf59a86ce9ec458b6f86d6ed30d6d, type: 3}
-  - {fileID: 21300000, guid: e3565b2ef414b0844a104d57156a9500, type: 3}
-  - {fileID: 21300000, guid: ee6da8b0974140345af91d6c491e1352, type: 3}
+  - {fileID: 21300000, guid: da4e75b236882aa439a68febd6d87b1e, type: 3}
+  - {fileID: 21300000, guid: d466b5a88cdd0de49a5b6075f95d156c, type: 3}
+  - {fileID: 21300000, guid: 173bba9f0df83624ba0320acdc052f12, type: 3}

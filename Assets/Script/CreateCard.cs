@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateCard : MonoBehaviour
 {
     [SerializeField]
     public GameObject Card;
-
-    [SerializeField]
-    private Image cardImage;
 
     private WeatherList.weather[] allWeathers = new WeatherList.weather[] {
         WeatherList.weather.Sunny,
@@ -20,11 +19,16 @@ public class CreateCard : MonoBehaviour
         // ... 다른 날씨 값들 추가
     };
 
+    [SerializeField]
+    List<GoalWeatherSprite> goalWeathers;
+
     // Start is called before the first frame update
     void Start()
     {
-        cardImage = GetComponent<Image>();
-        newCard();
+        foreach(GoalWeatherSprite sprite in Resources.LoadAll<GoalWeatherSprite>("GoalWeatherSprite"))
+        {
+            goalWeathers.Add(sprite);
+        }
     }
 
     // Update is called once per frame
@@ -40,13 +44,14 @@ public class CreateCard : MonoBehaviour
         {
             WeatherList.weather randomWeather = (WeatherList.weather)allWeathers[Random.Range(0, allWeathers.Length)];
 
-            GameObject _object = Instantiate(Card);
+            GameObject _object = Instantiate(Card, GameObject.Find("Canvas").transform);
             CardResource card = _object.GetComponent<CardResource>();
 
             if (card != null) // CardResource 컴포넌트가 할당되었는지 확인
             {
                 card.CurrentWeather = randomWeather;
-                cardImage.sprite =
+                int i = Random.Range(0, 3);
+                _object.GetComponent<Image>().sprite = goalWeathers.Find(x => x.weather == randomWeather).image[i];
                 randomWeather = allWeathers[Random.Range(0, allWeathers.Length)];
                 card.needWeather = randomWeather;
 

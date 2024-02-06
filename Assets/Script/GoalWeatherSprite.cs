@@ -9,11 +9,5 @@ public class GoalWeatherSprite : ScriptableObject
     public WeatherList.weather weather;
 
     [SerializeField]
-    public Sprite image1;
-
-    [SerializeField]
-    public Sprite image2;
-
-    [SerializeField]
-    public Sprite image3;
+    public Sprite[] image = new Sprite[3];
 }
