@@ -155,6 +155,5 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("You Lose...");
-        Instance = null;
     }
 }

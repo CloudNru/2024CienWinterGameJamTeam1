@@ -55,6 +55,13 @@ public class BehaviorStack : MonoBehaviour
         UpdateUI();
     }
 
+    public void Clear()
+    {
+        size = 0;
+
+        UpdateUI();
+    }
+
     public int Count() { return size; }
 
     public void UpdateUI()

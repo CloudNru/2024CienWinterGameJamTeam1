@@ -46,6 +46,7 @@ public class WeatherCraft
                 behaviorList.Add(BehaviorObject.Behavior.NULL);
             }
         }
+        behaviors.Clear(); 
 
         string s = "";
         foreach(BehaviorObject.Behavior behavior in behaviorList)
