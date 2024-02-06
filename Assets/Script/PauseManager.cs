@@ -49,5 +49,9 @@ public class PauseManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene("CardT");
+    }
 
 }

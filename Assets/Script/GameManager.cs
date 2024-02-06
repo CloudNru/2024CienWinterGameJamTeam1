@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int score;
 
+    [SerializeField]
+    private TextMeshProUGUI ddayText;
+
+    [SerializeField]
+    private GameObject gameOverPanel;
+
+    [SerializeField]
+    private Image stamp;
+
+    public Sprite[] stampList;
+
+    [SerializeField]
+    private TextMeshProUGUI gameOverScore;
+
     private void Start()
     {
         Instance = this;
@@ -34,20 +49,39 @@ public class GameManager : MonoBehaviour
         life = 3;
         score = 0;
 
+
         foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
         {
             weatherRecipes.Add(recipe);
         }
+
+        gameOverPanel.SetActive(false);
     }
     void Update()
     {
         if (time <= 0)
         {
-            //GameOver();
+            if(score >= 30)
+            {
+                GameClear();
+            }
+            else
+            {
+                GameOver();
+            }
         }
         time -= Time.deltaTime;
         slider.value = time / maxTime;
         scoreText.text = score + "점";
+        if(life > 0) { 
+            ddayText.text = ("D-" + life);
+        }
+        else if(life == 0)
+        {
+            ddayText.text = ("D-day");
+            GameOver();
+            Time.timeScale = 0;
+        }
     }
 
     public WeatherRecipe isGoodRecipe(BehaviorObject.Behavior first, BehaviorObject.Behavior second, BehaviorObject.Behavior third)
@@ -160,11 +194,17 @@ public class GameManager : MonoBehaviour
 
     private void GameClear()
     {
+        gameOverScore.text = (score + "점!");
+        gameOverPanel.SetActive(true);
+        stamp.sprite = stampList[0];
         Debug.Log("You Win!");
     }
 
     private void GameOver()
     {
+        gameOverScore.text = (score + "점!");
+        gameOverPanel.SetActive(true);
+        stamp.sprite = stampList[1];
         Debug.Log("You Lose...");
     }
 }

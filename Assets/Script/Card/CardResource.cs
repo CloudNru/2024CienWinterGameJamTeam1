@@ -41,10 +41,16 @@ public class CardResource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isActive = true;
+        isActive = false;
         rect = this.gameObject.GetComponent<RectTransform>();
         origin = rect.anchoredPosition;
         Invoke("ChangeWeather", 1f);
+        Invoke("setTrue", 1f);
+    }
+
+    void setTrue()
+    {
+        isActive = true;
     }
 
     public void weatherCrafting(BehaviorStack inputBehavior) //행동 정보를 입력받아 날씨 조합, 조합한 날씨가 목표 날씨와 같은 지 확인

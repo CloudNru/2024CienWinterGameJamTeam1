@@ -57,7 +57,7 @@ public class MainMenuManager : MonoBehaviour
     public void GameStart()
     {
         if (!isPanelActivated) { 
-            SceneManager.LoadScene("MakingUIScene");
+            SceneManager.LoadScene("CardT");
         }
     }
     public void ShowHowToPlay()
