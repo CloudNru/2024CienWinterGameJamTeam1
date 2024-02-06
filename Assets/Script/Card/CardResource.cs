@@ -6,21 +6,34 @@ using DG.Tweening;
 
 public class CardResource : MonoBehaviour
 {
-    public WeatherList.weather CurrentWeather;
+    [SerializeField]
+    WeatherList.weather CurrentWeather;
 
-    public WeatherList.weather needWeather;
+    [SerializeField]
+    WeatherList.weather needWeather;
 
-    public CreateCard CardMaker;
+    [SerializeField]
+    Sprite successSprite;
 
-    public Image image;
-    public Image icon;
+    [SerializeField]
+    CreateCard CardMaker;
 
-    public Vector3 origin;
+    [SerializeField]
+    Image image;
+
+    [SerializeField] 
+    Image icon;
+
+    [SerializeField] 
+    Vector3 origin;
 
     RectTransform rect;
 
     [SerializeField]
     bool isActive = true;
+
+    [SerializeField]
+    float waitingTime = 0.5f;
 
     [SerializeField]
     float movingTime = 0.25f;
@@ -42,25 +55,37 @@ public class CardResource : MonoBehaviour
             if (CraftedWeather == needWeather)
             {
                 GameManager.getInstance().AddScore(1);
-                goCard();
+                Sucess();
             }
             else
             {
                 GameManager.getInstance().SubtractScore(1);
                 GameManager.getInstance().LoseLife(1);
-                goCard();
+                Fail();
             }
         }
     }
 
-    public void goCard()
+    void Sucess()
     {
         isActive = false;
+        image.sprite = successSprite;
+        Invoke("goCard", waitingTime);
+    }
+
+    void Fail()
+    {
+        isActive = false;
+        Invoke("goCard", waitingTime);
+    }
+
+    void goCard()
+    {
         rect.DOAnchorPos(origin - new Vector3(0,Camera.main.scaledPixelHeight, 0), movingTime);
         Invoke("ChangeAndBack", movingTime);
     }
 
-    public void ChangeWeather()
+    void ChangeWeather()
     {
         CurrentWeather = (WeatherList.weather)Random.Range(1, 7);
         icon.sprite= CardMaker.getCurrentIcon(CurrentWeather);
@@ -73,16 +98,19 @@ public class CardResource : MonoBehaviour
                 needWeather = (WeatherList.weather)Random.Range(1, 7);
             }
         }
-        image.sprite = CardMaker.getGoalImage(needWeather);
+
+        int i = Random.Range(0, 3);
+        image.sprite = CardMaker.getGoalImage(needWeather, i);
+        this.successSprite = CardMaker.getGoalSuccessImage(needWeather,i);
     }
 
-    public void ChangeAndBack()
+    void ChangeAndBack()
     {
         ChangeWeather();
         Invoke("endSet", movingTime);
     }
 
-    public void endSet()
+    void endSet()
     {
         rect.DOAnchorPos(origin, movingTime);
         isActive = true;
