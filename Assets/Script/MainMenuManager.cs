@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -16,11 +18,22 @@ public class MainMenuManager : MonoBehaviour
     int index;
     int sunCount = 0;
 
+    [SerializeField]
+    Image solar;
+
+    bool isSolarMoving = false;
+
+    [SerializeField]
+    float repeatTime = 0.75f;
+
+    [SerializeField]
+    float solarTime = 0.75f;
+
     private void Start()
     {
         index = 0;
         sun.sprite = sunSprites[index];
-        InvokeRepeating("ImagesAnimation", 1f,1f);
+        InvokeRepeating("ImagesAnimation", repeatTime, repeatTime);
     }
 
     public void GameStart()
@@ -77,6 +90,17 @@ public class MainMenuManager : MonoBehaviour
         else if(sunCount == 10)
         {
             Debug.Log("EasterEgg!");
+            if (!isSolarMoving)
+            {
+                solar.gameObject.SetActive(true);
+                float h = GameObject.Find("Canvas").GetComponent<RectTransform>().sizeDelta.y;
+                RectTransform rect = solar.gameObject.GetComponent<RectTransform>();
+
+                rect.anchoredPosition = new Vector2(0, -h);
+                rect.DOAnchorPos(new Vector2(0, h), solarTime);
+                isSolarMoving = true;
+            }
+            
         }
     }
 }

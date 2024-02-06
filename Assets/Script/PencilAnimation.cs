@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PencilAnimation : MonoBehaviour
 {
-
+    [SerializeField]
+    float repeatTime = 0.75f;
     
     int what;
 
@@ -12,7 +13,7 @@ public class PencilAnimation : MonoBehaviour
     void Start()
     {
         what = 1;
-        InvokeRepeating("PencilRotate", 1.3f,1.3f);
+        InvokeRepeating("PencilRotate", repeatTime, repeatTime);
     }
 
     // Update is called once per frame
