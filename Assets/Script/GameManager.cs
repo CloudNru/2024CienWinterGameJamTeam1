@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<WeatherRecipe> weatherRecipes;
 
+    [SerializeField]
+    private Slider slider;
+
+    [SerializeField]
+    private Text scoreText;
+
+    [SerializeField]
+    private float maxTime;
     [SerializeField]
     private float time;
     [SerializeField]
@@ -19,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        maxTime = 60;
         time = 60;
         life = 3;
         score = 0;
@@ -27,6 +38,16 @@ public class GameManager : MonoBehaviour
         {
             weatherRecipes.Add(recipe);
         }
+    }
+    void Update()
+    {
+        if (time <= 0)
+        {
+            //GameOver();
+        }
+        time -= Time.deltaTime;
+        slider.value = time / maxTime;
+        scoreText.text = score + "점";
     }
 
     public WeatherRecipe isGoodRecipe(BehaviorObject.Behavior first, BehaviorObject.Behavior second, BehaviorObject.Behavior third)
@@ -79,16 +100,6 @@ public class GameManager : MonoBehaviour
         {
             return Instance;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(time <= 0)
-        {
-            //GameOver();
-        }
-        time -= Time.deltaTime;
     }
 
     void call()
