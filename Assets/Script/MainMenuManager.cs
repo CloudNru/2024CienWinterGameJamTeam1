@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 
 public class MainMenuManager : MonoBehaviour
 {
-
     public GameObject howToPlayPanel;
     private bool isPanelActivated = false;
 
@@ -99,8 +98,15 @@ public class MainMenuManager : MonoBehaviour
                 rect.anchoredPosition = new Vector2(0, -h);
                 rect.DOAnchorPos(new Vector2(0, h), solarTime);
                 isSolarMoving = true;
+                Invoke("ResetSolar", 1.5f);
             }
-            
         }
+    }
+
+    void ResetSolar()
+    {
+        solar.gameObject.SetActive(false);
+        isSolarMoving = false;
+        sunCount = 0;
     }
 }

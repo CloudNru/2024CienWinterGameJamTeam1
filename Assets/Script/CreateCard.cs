@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,6 @@ public class CreateCard : MonoBehaviour
     [SerializeField]
     public GameObject Card;
 
-    [SerializeField]
-    private Image cardImage;
-
     private WeatherList.weather[] allWeathers = new WeatherList.weather[] {
         WeatherList.weather.Sunny,
         WeatherList.weather.Wind,
@@ -18,14 +16,19 @@ public class CreateCard : MonoBehaviour
         WeatherList.weather.Snow,
         WeatherList.weather.Lightning,
         WeatherList.weather.Fog
-        // ... ´Ù¸¥ ³¯¾¾ °ªµé Ãß°¡
+        // ... ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     };
+
+    [SerializeField]
+    List<GoalWeatherSprite> goalWeathers;
 
     // Start is called before the first frame update
     void Start()
     {
-        cardImage = GetComponent<Image>();
-        newCard();
+        foreach(GoalWeatherSprite sprite in Resources.LoadAll<GoalWeatherSprite>("GoalWeatherSprite"))
+        {
+            goalWeathers.Add(sprite);
+        }
     }
 
     // Update is called once per frame
@@ -37,17 +40,18 @@ public class CreateCard : MonoBehaviour
     public CardResource newCard()
     {
         //*
-        if (Card != null) // Card°¡ ÇÒ´çµÇ¾ú´ÂÁö È®ÀÎ
+        if (Card != null) // Cardï¿½ï¿½ ï¿½Ò´ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         {
             WeatherList.weather randomWeather = (WeatherList.weather)allWeathers[Random.Range(0, allWeathers.Length)];
 
-            GameObject _object = Instantiate(Card);
+            GameObject _object = Instantiate(Card, GameObject.Find("Canvas").transform);
             CardResource card = _object.GetComponent<CardResource>();
 
-            if (card != null) // CardResource ÄÄÆ÷³ÍÆ®°¡ ÇÒ´çµÇ¾ú´ÂÁö È®ÀÎ
+            if (card != null) // CardResource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ò´ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             {
                 card.CurrentWeather = randomWeather;
-                //cardImage.sprite =
+                int i = Random.Range(0, 3);
+                _object.GetComponent<Image>().sprite = goalWeathers.Find(x => x.weather == randomWeather).image[i];
                 randomWeather = allWeathers[Random.Range(0, allWeathers.Length)];
                 card.needWeather = randomWeather;
 
@@ -57,13 +61,13 @@ public class CreateCard : MonoBehaviour
             }
             else
             {
-                Debug.LogError("CardResource ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogError("CardResource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
                 return null;
             }
         }
         else
         {
-            Debug.LogError("CardÀÌ(°¡) ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("Cardï¿½ï¿½(ï¿½ï¿½) ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
             return null;
         }
         //*/

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    public static GameManager getInstance() //½Ì±ÛÅæ
+    public static GameManager getInstance() //ï¿½Ì±ï¿½ï¿½ï¿½
     {
         if(Instance == null)
         {
@@ -119,12 +119,12 @@ public class GameManager : MonoBehaviour
         score -= n;
     }
 
-    public void RecoverLife() //¸ñ¼û +1
+    public void RecoverLife() //ï¿½ï¿½ï¿½ +1
     {
         RecoverLife(1);
     }
 
-    public void RecoverLife(int n) //¸ñ¼û +n
+    public void RecoverLife(int n) //ï¿½ï¿½ï¿½ +n
     {
         life += n;
         if(life < 3)
@@ -133,12 +133,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoseLife() //¸ñ¼û -1
+    public void LoseLife() //ï¿½ï¿½ï¿½ -1
     {
         LoseLife(1);
     }
 
-    public void LoseLife(int n) //¸ñ¼û -n
+    public void LoseLife(int n) //ï¿½ï¿½ï¿½ -n
     {
         life -= n;
         if(life <= 0)
