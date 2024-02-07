@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using Unity.VisualScripting;
-using UnityEditor.Profiling.Memory.Experimental;
 
 public class MainMenuManager : MonoBehaviour
 {
