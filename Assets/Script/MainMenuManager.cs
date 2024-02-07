@@ -5,16 +5,30 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEditor.Profiling.Memory.Experimental;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+
     public GameObject howToPlayPanel;
     private bool isPanelActivated = false;
 
     public Image sun;
     public Sprite[] sunSprites;
     public Button sunButton;
+
+    public Image cloud;
+    public Sprite[] cloudSprites;
+
+    public Image memo;
+    public Sprite[] memoSprites;
+
+    public Image tutorial;
+    public Sprite[] tutorialSprites;
+
     int index;
+    int tutorialIndex;
     int sunCount = 0;
 
     [SerializeField]
@@ -30,15 +44,20 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        audioSource.Play();
+
         index = 0;
+        tutorialIndex = 0;
         sun.sprite = sunSprites[index];
+        cloud.sprite = cloudSprites[index];
+        memo.sprite = memoSprites[index];
         InvokeRepeating("ImagesAnimation", repeatTime, repeatTime);
     }
 
     public void GameStart()
     {
         if (!isPanelActivated) { 
-            SceneManager.LoadScene("MakingUIScene");
+            SceneManager.LoadScene("CardT");
         }
     }
     public void ShowHowToPlay()
@@ -47,6 +66,7 @@ public class MainMenuManager : MonoBehaviour
         {
             howToPlayPanel.SetActive(true);
             isPanelActivated = true;
+            sunButton.image.raycastTarget = false;
             sunButton.interactable = false;
         }
     }
@@ -60,23 +80,43 @@ public class MainMenuManager : MonoBehaviour
     }
     public void ClosePanel()
     {
-        if (isPanelActivated) { 
+        if (isPanelActivated) {
+            Debug.Log("asdf");
             howToPlayPanel.SetActive(false);
-            isPanelActivated= false;
+            isPanelActivated = false;
+            sunButton.image.raycastTarget = true;
             sunButton.interactable = true;
         }
     }
+    public void ChangeTutorialPage()
+    {
+        if (tutorialIndex == 0)
+        {
+            tutorialIndex = 1;
+            tutorial.sprite = tutorialSprites[tutorialIndex];
+        }
+        else if (tutorialIndex == 1)
+        {
+            tutorialIndex = 0;
+            tutorial.sprite = tutorialSprites[tutorialIndex];
+        }
+    }
+
     void ImagesAnimation()
     {
         if (index == 0)
         {
             index = 1;
             sun.sprite = sunSprites[index];
+            cloud.sprite = cloudSprites[index];
+            memo.sprite = memoSprites[index];
         }
         else if(index == 1)
         {
             index = 0;
             sun.sprite = sunSprites[index];
+            cloud.sprite = cloudSprites[index];
+            memo.sprite = memoSprites[index];
         }
 
     }

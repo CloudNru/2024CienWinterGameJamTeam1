@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,22 +13,74 @@ public class GameManager : MonoBehaviour
     private List<WeatherRecipe> weatherRecipes;
 
     [SerializeField]
+    private Slider slider;
+
+    [SerializeField]
+    private Text scoreText;
+
+    [SerializeField]
+    private float maxTime;
+    [SerializeField]
     private float time;
     [SerializeField]
     private int life;
     [SerializeField]
     private int score;
 
+    [SerializeField]
+    private TextMeshProUGUI ddayText;
+
+    [SerializeField]
+    private GameObject gameOverPanel;
+
+    [SerializeField]
+    private Image stamp;
+
+    public Sprite[] stampList;
+
+    [SerializeField]
+    private TextMeshProUGUI gameOverScore;
+
     private void Start()
     {
         Instance = this;
+        maxTime = 60;
         time = 60;
         life = 3;
         score = 0;
 
+
         foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
         {
             weatherRecipes.Add(recipe);
+        }
+
+        gameOverPanel.SetActive(false);
+    }
+    void Update()
+    {
+        if (time <= 0)
+        {
+            if(score >= 30)
+            {
+                GameClear();
+            }
+            else
+            {
+                GameOver();
+            }
+        }
+        time -= Time.deltaTime;
+        slider.value = time / maxTime;
+        scoreText.text = score + "점";
+        if(life > 0) { 
+            ddayText.text = ("D-" + life);
+        }
+        else if(life == 0)
+        {
+            ddayText.text = ("D-day");
+            GameOver();
+            Time.timeScale = 0;
         }
     }
 
@@ -79,16 +134,6 @@ public class GameManager : MonoBehaviour
         {
             return Instance;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(time <= 0)
-        {
-            //GameOver();
-        }
-        time -= Time.deltaTime;
     }
 
     void call()
@@ -149,12 +194,17 @@ public class GameManager : MonoBehaviour
 
     private void GameClear()
     {
+        gameOverScore.text = (score + "점!");
+        gameOverPanel.SetActive(true);
+        stamp.sprite = stampList[0];
         Debug.Log("You Win!");
     }
 
     private void GameOver()
     {
+        gameOverScore.text = (score + "점!");
+        gameOverPanel.SetActive(true);
+        stamp.sprite = stampList[1];
         Debug.Log("You Lose...");
-        Instance = null;
     }
 }

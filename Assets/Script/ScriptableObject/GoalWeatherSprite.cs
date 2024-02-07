@@ -10,4 +10,7 @@ public class GoalWeatherSprite : ScriptableObject
 
     [SerializeField]
     public Sprite[] image = new Sprite[3];
+
+    [SerializeField]
+    public Sprite[] successImage = new Sprite[3];
 }

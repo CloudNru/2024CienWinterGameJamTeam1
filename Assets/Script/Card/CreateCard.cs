@@ -25,8 +25,6 @@ public class CreateCard : MonoBehaviour
     [SerializeField]
     List<CurrenWeatherIcon> currentWeatherImages = new List<CurrenWeatherIcon>();
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +45,7 @@ public class CreateCard : MonoBehaviour
         
     }
 
+    /*
     public CardResource newCard()
     {
         //*
@@ -80,8 +79,8 @@ public class CreateCard : MonoBehaviour
             Debug.LogError("Card��(��) �Ҵ���� �ʾҽ��ϴ�.");
             return null;
         }
-        //*/
-        /*
+        
+        
         WeatherList.weather randomWeather = WeatherList.weather.Rain;
 
         GameObject _object = Instantiate(Card);
@@ -93,8 +92,8 @@ public class CreateCard : MonoBehaviour
 
         card.CardMaker = this;
 
-        return card;//*/
-    }
+        return card;
+    }//*/
 
     public Sprite getCurrentIcon(WeatherList.weather weather)
     {
@@ -107,6 +106,23 @@ public class CreateCard : MonoBehaviour
         return goalWeathers.Find(x => x.weather == weather).image[i];
     }
 
+    public Sprite getGoalImage(WeatherList.weather weather, int index)
+    {
+        return goalWeathers.Find(x => x.weather == weather).image[index];
+    }
+
+    public Sprite getGoalSuccessImage(WeatherList.weather weather)
+    {
+        int i = Random.Range(0, 3);
+        return goalWeathers.Find(x => x.weather == weather).successImage[i];
+    }
+
+    public Sprite getGoalSuccessImage(WeatherList.weather weather, int index)
+    {
+        return goalWeathers.Find(x => x.weather == weather).successImage[index];
+    }
+
+    /*
     public CardResource changeCard(CardResource c)
     {
         WeatherList.weather randomWeather = allWeathers[Random.Range(0, allWeathers.Length)];
@@ -117,13 +133,13 @@ public class CreateCard : MonoBehaviour
         c.needWeather = randomWeather;
 
         return c;
-        /* WeatherList.weather randomWeather = (WeatherList.weather)Random.Range(0, System.Enum.GetValues(typeof(WeatherList)).Length);
+        WeatherList.weather randomWeather = (WeatherList.weather)Random.Range(0, System.Enum.GetValues(typeof(WeatherList)).Length);
 
          c.CurrentWeather = randomWeather;
 
          randomWeather = (WeatherList.weather)Random.Range(0, System.Enum.GetValues(typeof(WeatherList)).Length);
          c.needWeather = randomWeather;
 
-         return c;*/
-    }
+         return c;
+    }//*/
 }

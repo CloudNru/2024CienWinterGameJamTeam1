@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MakingUIScene.unity
     guid: 57b8d8dc98486154fbcbcf434f455c33
+  - enabled: 1
+    path: Assets/Scenes/CardT.unity
+    guid: 07bb3aa5cef05b2428c20a232aa26cab
   m_configObjects: {}
