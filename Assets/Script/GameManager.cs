@@ -42,17 +42,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
+        {
+            weatherRecipes.Add(recipe);
+        }
+    }
+
+    private void Awake()
+    {
         Instance = this;
         maxTime = 60;
         time = 60;
         life = 3;
         score = 0;
-
-
-        foreach (WeatherRecipe recipe in Resources.LoadAll<WeatherRecipe>("WeatherRecipe"))
-        {
-            weatherRecipes.Add(recipe);
-        }
+        Time.timeScale = 1;
 
         gameOverPanel.SetActive(false);
     }

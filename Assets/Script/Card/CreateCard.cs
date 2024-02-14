@@ -25,6 +25,9 @@ public class CreateCard : MonoBehaviour
     [SerializeField]
     List<CurrenWeatherIcon> currentWeatherImages = new List<CurrenWeatherIcon>();
 
+    [SerializeField]
+    List<RectTransform> cardPositions = new List<RectTransform>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +42,36 @@ public class CreateCard : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Invoke("setStart", 1f);
+    }
+
+    void setStart()
+    {
+        foreach (RectTransform rectTransform in cardPositions)
+        {
+            newCard(rectTransform);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public CardResource newCard(RectTransform position)
+    {
+        if(Card == null)
+        {
+            return null;
+        }
+
+        GameObject _card = Instantiate(Card, position.transform);
+        //_card.GetComponent<RectTransform>().anchoredPosition = position.anchoredPosition;
+        _card.SetActive(true);
+        return _card.GetComponent<CardResource>();
     }
 
     /*

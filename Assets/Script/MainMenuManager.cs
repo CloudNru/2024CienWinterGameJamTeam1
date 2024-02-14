@@ -43,7 +43,16 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        audioSource.Play();
+        var obj = FindObjectsOfType<AudioSource>();
+        if (obj.Length == 1)
+        {
+            DontDestroyOnLoad(audioSource);
+            audioSource.Play();
+        }
+        else
+        {
+            Destroy(audioSource.gameObject);
+        }
 
         index = 0;
         tutorialIndex = 0;

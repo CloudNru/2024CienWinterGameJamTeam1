@@ -39,13 +39,18 @@ public class CardResource : MonoBehaviour
     float movingTime = 0.25f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
+    {
+        Setting();
+        setTrue();
+        ChangeWeather();
+    }
+
+    public void Setting()
     {
         isActive = false;
         rect = this.gameObject.GetComponent<RectTransform>();
         origin = rect.anchoredPosition;
-        Invoke("ChangeWeather", 1f);
-        Invoke("setTrue", 1f);
     }
 
     void setTrue()
@@ -53,8 +58,10 @@ public class CardResource : MonoBehaviour
         isActive = true;
     }
 
-    public void weatherCrafting(BehaviorStack inputBehavior) //행동 정보를 입력받아 날씨 조합, 조합한 날씨가 목표 날씨와 같은 지 확인
+    public void weatherCrafting() //행동 정보를 입력받아 날씨 조합, 조합한 날씨가 목표 날씨와 같은 지 확인
     {
+        BehaviorStack inputBehavior = GameObject.Find("Combination").GetComponent<BehaviorStack>();
+
         if (isActive)
         {
             WeatherList.weather CraftedWeather = WeatherCraft.CraftingWeather(CurrentWeather, inputBehavior);
@@ -93,6 +100,11 @@ public class CardResource : MonoBehaviour
 
     void ChangeWeather()
     {
+        if(CardMaker == null)
+        {
+            CardMaker = GameObject.Find("GameManager").GetComponent<CreateCard>();
+        }
+
         CurrentWeather = (WeatherList.weather)Random.Range(1, 7);
         icon.sprite= CardMaker.getCurrentIcon(CurrentWeather);
 
